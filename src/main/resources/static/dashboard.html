@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CDT Management - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <div>
+        <h1>CDT Management Dashboard</h1>
+        <p id="advisorInfo">Advisor session</p>
+    </div>
+    <button id="logoutButton" class="secondary-button">Logout</button>
+</header>
+
+<main class="dashboard">
+
+    <section class="summary-grid">
+        <div class="summary-card">
+            <h2 id="customerCount">0</h2>
+            <p>Customers</p>
+        </div>
+
+        <div class="summary-card">
+            <h2 id="termDepositCount">0</h2>
+            <p>Term Deposits</p>
+        </div>
+
+        <div class="summary-card warning">
+            <h2 id="pendingNotificationCount">0</h2>
+            <p>Pending Notifications</p>
+        </div>
+    </section>
+
+    <section class="actions">
+        <button id="generateNotificationsButton">Generate Notifications</button>
+        <button id="refreshButton" class="secondary-button">Refresh Dashboard</button>
+    </section>
+
+    <section class="content-card">
+        <h2>Pending Notifications</h2>
+        <div id="notificationsContainer" class="table-container">
+            <p>No pending notifications loaded.</p>
+        </div>
+    </section>
+
+    <section class="content-card">
+        <h2>Term Deposits Maturing in the Next Five Days</h2>
+        <div id="maturingDepositsContainer" class="table-container">
+            <p>No term deposits loaded.</p>
+        </div>
+    </section>
+
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.bank.cdt.management.api.controllers.controllers;
+package com.bank.cdt.management.api.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

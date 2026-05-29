@@ -16,25 +16,32 @@ loginForm.addEventListener("submit", async function (event) {
     }
 
     try {
-        const advisor = await apiGet(`/advisors/username/${encodeURIComponent(username)}`);
+        const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
 
-        if (!advisor.active) {
-            showLoginError("Advisor account is inactive.");
-            return;
-        }
-
-        if (advisor.passwordHash !== password) {
+        if (!response.ok) {
             showLoginError("Invalid username or password.");
             return;
         }
 
-        localStorage.setItem("advisorId", advisor.id);
-        localStorage.setItem("advisorUsername", advisor.username);
-        localStorage.setItem("advisorFullName", advisor.fullName);
+        const loginResponse = await response.json();
+
+        localStorage.setItem("advisorId", loginResponse.advisorId);
+        localStorage.setItem("advisorUsername", loginResponse.username);
+        localStorage.setItem("advisorFullName", loginResponse.fullName);
+        localStorage.setItem("loginNotifications", JSON.stringify(loginResponse.notifications || []));
 
         window.location.href = "dashboard.html";
     } catch (error) {
-        showLoginError("Invalid username or password.");
+        showLoginError("Could not connect to the server.");
     }
 });
 
